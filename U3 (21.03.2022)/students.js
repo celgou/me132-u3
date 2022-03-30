@@ -4,6 +4,7 @@ let allStudents = DATABASE.students;
 let allCourses = DATABASE.courses;
 
 function renderStudent(id){
+    console.log("hej");
     let div = document.createElement("div");
     let student = DATABASE.students[id];
     div.id = "student-div";
@@ -46,6 +47,7 @@ function renderStudents(students){
 }
 
 function showCourses(student){
+    console.log("hej");
     let courseInfo = DATABASE.courses;
     let courses = [];
     for(let i=0; i<student.courses.length; i++){
@@ -73,15 +75,30 @@ function showCourses(student){
                 courseBox.push(info);
         }
     }
+<<<<<<< Updated upstream
     return courseBox.toString().split(".").join("");
 }
-
-function searchForLastName(){
-    console.log(this.value);
-    showStudents(DATABASE.students);
+=======
+    return courseArray.toString().split(",").join("");
 }
 
-let input=document.getElementById ("search-student");
-input.addEventListener("keyup",searchForLastName);
+function inputResult (){
+    let result=[];
+    let input= document.getElementById("student-input");
+    console.log("do i reach here");
 
-showStudents(DATABASE.students);
+    for(let i=0; i<allStudents.length; i++){
+        document.querySelector("#student-results").innerHTML="";
+        if (""==input.value){
+            document.querySelector("#student-results").innerHTML="";
+        }else if(allStudents[i].lastName.toLowerCase().includes(input.value.toLowerCase())){
+            resultArray.push(allStudents[i]);
+        }
+        
+    }
+>>>>>>> Stashed changes
+
+    renderStudents(resultArray);
+}
+
+document.getElementById("input").addEventListener("keyup",inputResult);
