@@ -20,12 +20,13 @@ function renderStudent(student){
 
 function totalCredits(student){
     let credits=[];
+
     for(let course of student.courses){
         credits.push(course.passedCredits);
     }
     let creditSum= 0;
     for(let i=0; i<credits.length; i++){
-        creditSum+= credits[i];
+        creditSum += credits[i];
     }
 
     return creditSum;
@@ -36,47 +37,46 @@ function renderStudents(students){
     let studentsElement = document.getElementById("students");
 
     for (let student of students){
-        let studentElement = renderStudent(student.studentID);
+        let studentElement = renderStudent(student);
         studentsElement.appendChild(studentElement);
     }
-
 }
 
 function showCourses(student){
-    console.log("hej");
-    let courseInfo = DATABASE.courses;
     let courses = [];
-    for(let i=0; i<student.courses.length; i++){
-        let id=student.courses[i].courseId;
-        courses.push(courseInfo[id]);
+
+    for(let i = 0; i < student.courses.length; i++){
+        let id = student.courses[i].courseId;
+        courses.push(allCourses[id]);
     }
 
     let courseBox = [];
     for (let i=0; i<courses.length; i++){
-        let div=doucment.createElement("div");
+        let div=document.createElement("div");
 
-        if (student.courses[i].passedCredits == courseInfo[courses[i].courseId].totalCredits){
+        if (student.courses[i].passedCredits == allCourses[courses[i].courseId].totalCredits){
             let info=div.innerHTML = `
             <div class="done">
                 <h3>${courses[i].title}</h3>
                 <p>${courses[i].started.semester} ${student.courses[i].started.year} (${student.courses[i].passedCredits}
-                of ${courseInfo[courses[i].courseId.totalCredits]} credits) </p>
+                of ${allCourses[courses[i].courseId.totalCredits]} credits) </p>
             </div>`
             courseBox.push(info);
         }else{
                 let info=div.innerHTML=`
                 <div class="notdone">
                     <h3>${courses[i].title}</h3>
-                    <p>${student.courses[i].started.semester} ${student.courses[i].started.year} (${student.courses[i].passedCredits} of ${courseInfo[courses[i].courseId].totalCredits} credits)</p>
+                    <p>${student.courses[i].started.semester} ${student.courses[i].started.year} (${student.courses[i].passedCredits} of
+                        ${allCourses[courses[i].courseId].totalCredits} credits)</p>
                 </div>`
                 courseBox.push(info);
         }
     }
-    return courseArray.toString().split(",").join("");
+    return courseBox.toString().split(",").join("");
 }
 
 function inputResult(){
-    let result=[];
+    let resultArray = [];
     let input= document.getElementById("student-input");
 
     for(let i=0; i<allStudents.length; i++){
