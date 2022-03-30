@@ -7,10 +7,10 @@ function renderStudent(student){
     let div = document.createElement("div");
     div.id = "student-div";
     div.innerHTML += `
-        <h2>${student.firstName} ${student.lastName} (total${studentCredits(student)} credits) </h2>
+        <h2>${student.firstName} ${student.lastName} (total${totalCredits(student)} credits) </h2>
         <h3>Courses:</h3>
         <div id="course-div">
-        ${allStudentCourses(student)}
+        ${showCourses(student)}
         </div>
     `;
 
@@ -34,7 +34,7 @@ function totalCredits(student){
 
 
 function renderStudents(students){
-    let studentsElement = document.getElementById("students");
+    let studentsElement = document.getElementById("student-results");
 
     for (let student of students){
         let studentElement = renderStudent(student);
@@ -57,15 +57,15 @@ function showCourses(student){
         if (student.courses[i].passedCredits == allCourses[courses[i].courseId].totalCredits){
             let info=div.innerHTML = `
             <div class="done">
-                <h3>${courses[i].title}</h3>
-                <p>${courses[i].started.semester} ${student.courses[i].started.year} (${student.courses[i].passedCredits}
+                <h3 id="course-header">${allCourses[i].title}</h3>
+                <p id="course-paragraph">${student.courses[i].started.semester} ${student.courses[i].started.year} (${student.courses[i].passedCredits}
                 of ${allCourses[courses[i].courseId.totalCredits]} credits) </p>
             </div>`
             courseBox.push(info);
         }else{
                 let info=div.innerHTML=`
                 <div class="notdone">
-                    <h3>${courses[i].title}</h3>
+                    <h3>${allCourses[i].title}</h3>
                     <p>${student.courses[i].started.semester} ${student.courses[i].started.year} (${student.courses[i].passedCredits} of
                         ${allCourses[courses[i].courseId].totalCredits} credits)</p>
                 </div>`
@@ -81,9 +81,9 @@ function inputResult(){
 
     for(let i=0; i<allStudents.length; i++){
         document.querySelector("#student-results").innerHTML="";
-        if (""==input.value){
-            document.querySelector("#student-results").innerHTML="";
-        }else if(allStudents[i].lastName.toLowerCase().includes(input.value.toLowerCase())){
+        if ("" == input.value){
+            document.querySelector("#student-results").innerHTML = "";
+        } else if(allStudents[i].lastName.toLowerCase().includes(input.value.toLowerCase())){
             resultArray.push(allStudents[i]);
         }
         
