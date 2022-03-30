@@ -3,15 +3,11 @@
 let allStudents = DATABASE.students;
 let allCourses = DATABASE.courses;
 
-function renderStudent(id){
-    console.log("hej");
+function renderStudent(student){
     let div = document.createElement("div");
-    let student = DATABASE.students[id];
     div.id = "student-div";
-    div.classList.add("container");
-
     div.innerHTML += `
-        <h2>$;{student.firstName} $;{student.lastName} (total$);{studentCredits(student)} credits) </h2>
+        <h2>${student.firstName} ${student.lastName} (total${studentCredits(student)} credits) </h2>
         <h3>Courses:</h3>
         <div id="course-div">
         ${allStudentCourses(student)}
@@ -63,7 +59,8 @@ function showCourses(student){
             let info=div.innerHTML = `
             <div class="done">
                 <h3>${courses[i].title}</h3>
-                <p>${courses[i].started.semester} ${student.courses[i].started.year} (${student.courses[i].passedCredits} of ${courseInfo[courses[i].courseId.totalCredits]} credits) </p>
+                <p>${courses[i].started.semester} ${student.courses[i].started.year} (${student.courses[i].passedCredits}
+                of ${courseInfo[courses[i].courseId.totalCredits]} credits) </p>
             </div>`
             courseBox.push(info);
         }else{
@@ -75,17 +72,12 @@ function showCourses(student){
                 courseBox.push(info);
         }
     }
-<<<<<<< Updated upstream
-    return courseBox.toString().split(".").join("");
-}
-=======
     return courseArray.toString().split(",").join("");
 }
 
-function inputResult (){
+function inputResult(){
     let result=[];
     let input= document.getElementById("student-input");
-    console.log("do i reach here");
 
     for(let i=0; i<allStudents.length; i++){
         document.querySelector("#student-results").innerHTML="";
@@ -96,9 +88,8 @@ function inputResult (){
         }
         
     }
->>>>>>> Stashed changes
 
     renderStudents(resultArray);
 }
 
-document.getElementById("input").addEventListener("keyup",inputResult);
+document.getElementById("student-input").addEventListener("keyup",inputResult);
