@@ -9,6 +9,9 @@ body {
 }
 
 #course-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin-top: 0px;
     margin-bottom: 5px;
     margin-left: 5px;
@@ -87,4 +90,5 @@ body {
 .dark-mode{
     background-color:rgb(53, 47, 53);
     color:rgb(229, 216, 230);
+    transition: 0.8s
 }
