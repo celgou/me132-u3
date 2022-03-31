@@ -26,6 +26,7 @@ h1{
 #course-results {
     background-color: rgb(235, 214, 194);
     margin: 20px;
+    border-radius: 10px;
 }
 
 #course-div {
@@ -33,8 +34,8 @@ h1{
     gap: 5px;
     padding: 5px;
     margin-bottom: 5px;
-
-    background-color: rgba(194, 166, 190, 0.253);
+    border-radius: 10px;
+    background-color: rgb(106, 126, 145);
     border: 2px solid rgb(255, 255, 255);
     text-align: center;
 } 
@@ -45,6 +46,7 @@ h1{
     grid-template-rows: repeat(2, 1fr);
     gap: 5px;
     text-align: center;
+    border-radius: 10px;
 }
 
 #resp-div {
@@ -55,7 +57,6 @@ h1{
 #resp-info {
     background-color: rgb(98, 133, 45);
     border: 1px solid rgb(219, 152, 89);
-
     text-align: center;
     padding-top: 15px;
 }
