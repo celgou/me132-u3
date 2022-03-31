@@ -74,5 +74,50 @@ function passedCredits(takenCourse, student){
 }
 
 function courseStarted(takenCourse, student){
-    let courseStart= student.courses.filter((course)=>course.courseId == takenCourse.courseId).map((course)=> `${course.started.semester}${course.started.year}`)
+    let courseStart= student.courses.filter((course)=>course.courseId == takenCourse.courseId).map((course)=>`${course.started.semester}${course.started.year}`)
+    return courseStart;
 }
+
+function allStudentinfo(id){
+    let courseId=DATABASE.courses[id].courseId;
+    let students= allStudents.filter((student)=> student.courses.some((course)=>course.courseId==courseId))
+    let studentsDiv=[];
+        for(let student of students){
+            let courseById= student.courses.filter((course)=>course.courseId==courseId)
+            for(let i=0; i<courseById.length; i++){
+                if(passedCredits(courseById[i], student[i])== DATABASE.courses[id].totalCredits){
+                    let div= document.createElement("div");
+                    let info=div.innerHTML=`<div class="done">
+                    <p>${student.firstName}${student.lastName}(${passedCredits(courseById[i],student[i])}credits)</p>
+                    <h4>${courseStarted(courseById[i],student[i])}</h4>
+                    </div>`
+                    studentsDiv.push(info)
+                }else{
+                    let div=document.createElement("div");
+                    let info=div.innerHTML=`<div class="not-done">
+                    <p>${student.firstName}${student.lastName}(${passedCredits(courseById[i],student[i])} credits)</p>
+                    <h4>${courseStarted(courseById[i],student[i])}</h4>
+                    </div>`
+                    studentsDiv.push(info);
+                }
+            }
+        }
+        return studentsDiv.toString().split(",").join(" ");
+}
+
+function inputResult(){
+    let resultArray=[];
+    let input= document.getElementById("course-input");
+
+    for(let i=0; i<allCourses.length; i++){
+        document.querySelector("#courses-result").innerHTML="";
+        if(""==input.value){
+            document.querySelector("#courses-result").innerHTML="";
+        }else if(allCourses[i].title.toLowerCase().includes(input.value.toLowerCase())){
+            resultArray.push(allCourses[i]);
+        }
+    }
+    renderCourses(resultArray);
+}
+
+document.getElementById("course-input").addEventListener("keyup",inputResult);
