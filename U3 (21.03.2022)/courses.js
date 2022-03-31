@@ -8,7 +8,7 @@ function renderCourse (id) {
     let div = document.createElement("div");
     div.id = "course-div";
     div.innerHTML += `
-        <h2>${courseTitle(id)} (total ${totalCourseCredits(id)} credits)</h2>
+        <h2>${titleOfCourse(id)} (total ${totalCourseCredits(id)} credits)</h2>
         <div id="resp-div">
         <h3>Course Responsible:</h3>
         <div id="resp-info">${courseResponsible(id)}</div>
@@ -35,7 +35,7 @@ function renderCourses (courses) {
     }
 }
 
-function courseTitle (id) {
+function titleOfCourse (id) {
     let course = DATABASE.courses[id];
     return course.title;
 }
@@ -120,5 +120,10 @@ function inputResult () {
 
     renderCourses(resultArray);
 }
-
+function darkModeActivated() {
+    var element = document.body;
+    element.classList.toggle("dark-mode");
+  } 
+  
 document.getElementById("course-input").addEventListener("keyup", inputResult);
+
