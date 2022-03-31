@@ -1,62 +1,111 @@
 body {
-    background-color: rgb(149, 167, 218);
+    background-color: rgb(211, 233, 214);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+h1{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: 'Neucha', cursive;
+}
+
+h2{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Neucha';
+}
+
+h3{
+    font-family: 'Neucha';
 }
 
 #search-h {
     margin-bottom: 1px;
-    margin-left: 15px;
+    margin-left: 5px;
 }
 
 #student-input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
     margin-top: 0px;
-    margin-bottom: 10px;
-    margin-left: 15px;
+    margin-bottom: 5px;
+    margin-left: 550px;
 
     height: 40px;
     width: 280px;
 }
 
 #student-results {
-    background-color: rgba(146, 70, 218, 0.329);
+    display: flex;
+    flex-direction: column;
     margin: 20px;
+    border-radius: 10px;
+    gap: 5px;
 }
 
 #student-div {
-    border: 5px solid black;
-    padding: 5px;
-    margin-bottom: 5px;
+    background-color: rgb(94, 122, 100);
+    flex-shrink: 1;
+    border: 2px solid black;
+    padding: 2px;
+    margin-bottom: 2px;
+    border-radius: 10px;
+    gap: 5px;
 }
 
 #course-div {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr); 
     gap: 5px;
-
     text-align: center;
 } 
 
 #done {
-    background-color: rgb(207, 197, 59);
-    border: 1px solid rgb(209, 182, 62);
+    background-color: rgb(64, 73, 71);
+    border: 1px solid rgb(83, 121, 121);
+    border-radius: 5px;
 }
 
 #not-done {
-    background-color: rgb(91, 73, 172);
-    border: 1px solid rgb(83, 117, 156);
+    background-color: rgb(107, 131, 118);
+    border: 1px solid rgb(32, 56, 43);
+    border-radius: 5px;
+}
+
+#done:hover{
+    background-color: rgba(187, 218, 196, 0.376);
+    color: whitesmoke;
+    transition: 0.3s;
+}
+
+#not-done:hover{
+    background-color: rgb(167, 148, 131) ;
+    color: whitesmoke;
+    transition: 0.3s;
 }
 
 #course-h {
-    margin-top: 5px;
-    margin-bottom: 0px;
+    margin-top: 7px;
+    margin-bottom: px;
 }
 
 #course-p {
-    margin-top: 2px;
-    margin-bottom: 5px;
+    margin-top: 7px;
+    margin-bottom: 7px;
 }
 
-.darkmode{
-    background-color:rgba(146, 70, 218, 0.329);
-    color:rgb(149, 167, 218);
+.dark-mode{
+    background-color:rgb(9, 37, 17);
+    color:rgb(148, 179, 136);
+    transition: 0.5s;
+}
+
+#student-div.dark-mode{
+    color: darkgreen;
 }

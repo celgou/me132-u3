@@ -2,6 +2,9 @@ body {
     background-color: rgb(246, 246, 246);
     font-family:Arial, Helvetica, sans-serif
 }
+h1{
+    font-family: 'Neucha';
+}
 
 #search-h {
     margin-bottom: 1px;
@@ -26,11 +29,12 @@ body {
 }
 
 #course-div {
+    flex-shrink: 2  ;
     gap: 5px;
     padding: 5px;
     margin-bottom: 5px;
 
-    background-color: rgba(255, 7, 222, 0.253);
+    background-color: rgba(194, 166, 190, 0.253);
     border: 2px solid rgb(255, 255, 255);
     text-align: center;
 } 

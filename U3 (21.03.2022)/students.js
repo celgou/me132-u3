@@ -1,13 +1,19 @@
 "use strict";
-
+//globala variabler för databasen
 let allStudents = DATABASE.students
 let allCourses = DATABASE.courses
+let allTeachers = DATABASE.teachers
+
+
+/*Funktion för att skapa en student baserat på informationen med syftet att skapa en div med id "student-div"
+som innehåller studentens förnamn och efternamn samt deras totala credits, därefter lägger jag till courses och ännu en div för alla kurserna
+vidare tänkte jag returnera den nya diven skapad */
 
 function renderStudent (student) {
     let div = document.createElement("div");
     div.id = "student-div";
     div.innerHTML += `
-        <h2>${student.firstName} ${student.lastName} (total ${studentCredits(student)} credits)</h2>
+        <h2>${student.firstName} ${student.lastName} (total ${totalStudentCredits(student)} credits)</h2>
         <h3>Courses:</h3>
         <div id="course-div">
         ${allStudentCourses(student)}
@@ -17,6 +23,7 @@ function renderStudent (student) {
     return div;
 }
 
+// funktion som ska gå igenom varje student och lägger till HTML
 function renderStudents (students) {
     let studentsElement = document.getElementById("student-results");
 
@@ -25,8 +32,8 @@ function renderStudents (students) {
         studentsElement.appendChild(studentElement);    
     }
 }
-
-function studentCredits (student) {
+// funktion för att räkna ut de totala högskolepoängen för en student, denna filtrerar studentens totala credits.
+function totalStudentCredits (student) {
     let credits = [];
 
     for (let course of student.courses) {
@@ -42,6 +49,8 @@ function studentCredits (student) {
     return creditSum;
 }
 
+
+// funktion som hittar kurserna baserat på deras id
 function allStudentCourses(student) {
     let theCourses = [];
 
@@ -83,6 +92,7 @@ function allStudentCourses(student) {
     return courseArray.toString().split(",").join("");
 }
 
+//Funktion för att veta vad som läggs in i sökrutan och implementera det i HTML.
 function inputResult () {
     let resultArray = [];
     let input = document.getElementById("student-input");
@@ -99,4 +109,12 @@ function inputResult () {
     renderStudents(resultArray);
 }
 
+//Eventlistener som lyssnar på vad användaren skriver in.
+
 document.getElementById("student-input").addEventListener("keyup", inputResult);
+
+//funktion för att kunna ha darkmode, däremot inte genom LocalStorage
+function darkModeActivated(){
+    var element = document.body;
+    element.classList.toggle("dark-mode");
+} 

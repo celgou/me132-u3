@@ -4,6 +4,7 @@ let allStudents = DATABASE.students;
 let allTeachers = DATABASE.teachers;
 let allCourses = DATABASE.courses;
 
+//funktion som går igenom kurser och implementerar det i HTML.  
 function renderCourse (id) {
     let div = document.createElement("div");
     div.id = "course-div";
@@ -25,7 +26,7 @@ function renderCourse (id) {
 
     return div;
 }
-
+//funktion för att hitta alla kurserna
 function renderCourses (courses) {
     let coursesElement = document.getElementById("courses-result");
 
@@ -34,24 +35,25 @@ function renderCourses (courses) {
         coursesElement.appendChild(courseElement);    
     }
 }
-
+//funktion för att hitta kurstitlarna
 function titleOfCourse (id) {
     let course = DATABASE.courses[id];
     return course.title;
 }
 
+//funktion för att veta hur många högskolepoäng varje enskild kurs har
 function totalCourseCredits (id) {
     let course = allCourses[id];
     return course.totalCredits;
 }
-
+//funktion som hittar kursansvarig
 function courseResponsible (id) {
     let course = DATABASE.courses[id];
     let teachersName = allTeachers.map((teacher) => teacher.firstName + " " + teacher.lastName + " " + `(${teacher.post})`);
     let resp = course.courseResponsible;
     return teachersName[resp];
 }
-
+//funktion som hittar information om läraren
 function allTeacherInfo (id) {
     let course = DATABASE.courses[id];
     let teachersNames = allTeachers.map((teacher) => teacher.firstName + " " + teacher.lastName + " " + `(${teacher.post})`);
@@ -67,17 +69,17 @@ function allTeacherInfo (id) {
 
     return teachers.toString().split(",").join(" ");
 }
-
+//funktion som tar reda på tidigare högskolepoäng
 function passedCredits (takenCourse, student){
     let passedCredit = student.courses.filter((course) => course.courseId == takenCourse.courseId).map((course) => course.passedCredits)
     return passedCredit
 }
-
+//funktion som tar reda på när kursen började
 function courseStarted (takenCourse, student){
     let courseStart = student.courses.filter((course) => course.courseId == takenCourse.courseId).map((course) => `${course.started.semester} ${course.started.year}`)
     return courseStart
 }
-
+//denna funktion tar reda på information om studenten
 function allStudentInfo (id) {
     let courseId = DATABASE.courses[id].courseId
     let students = allStudents.filter((student) => student.courses.some((course) => course.courseId == courseId))
@@ -104,7 +106,7 @@ function allStudentInfo (id) {
         }
     return studentsDiv.toString().split(",").join(" ");
 }
-
+//funktion som tar reda på vad som läggs in i input
 function inputResult () {
     let resultArray = [];
     let input = document.getElementById("course-input");
@@ -120,10 +122,13 @@ function inputResult () {
 
     renderCourses(resultArray);
 }
+
+//dark mode funktion
 function darkModeActivated() {
     var element = document.body;
     element.classList.toggle("dark-mode");
-  } 
+} 
   
+//här skapade jag en eventlistener som lyssnar på när användaren skriver in i sökfunktionen.
 document.getElementById("course-input").addEventListener("keyup", inputResult);
 
